@@ -12,8 +12,7 @@ def cria_usuario(user, user_addr):
     # -- observe que geraNonce retorna uma tupla com dois parâmetros
     # -- o SALT é o segundo parâmetro (base64) e precisa ser convertido para string com decode()
 
-    salt = 'SALT' # TODO: modifique essa linha
-
+    salt = HL.geraNonce(128)[1].decode()
     # -- SALGAR_SENHA é o nome da mensagem e salt é o parâmetro 
     data = HL.formataMensagem(['SALGAR_SENHA', salt] ) 
     s.sendto(data, user_addr )
@@ -58,8 +57,8 @@ def autentica_usuario(user, user_addr):
     #------------------------------------------------------------------------------------------------------------    
     # 3) ALICE envia o SALT previamente cadastrado
     # -- utilize o SALT que está cadastrado no dicionário
-    
-    salt = 'SALT' # TODO: modifique essa linha
+
+    salt = salts[user]
 
     # -- SALGAR_SENHA é o nome da mensagem e salt é o parâmetro 
     data = HL.formataMensagem(['SALGAR_SENHA', salt]) 
