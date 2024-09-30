@@ -37,7 +37,7 @@ def salgar_senha(login, senha):
 # -- utilize o segundo parâmetro (str) retornado pela biblioteca
 # -- concatene a senha com o salt usando '+', mas ambos precisam ser string.
     
-    senha_salgada =  senha # TODO: modifique essa linha
+    _, senha_salgada =  HL.calculaHASH( senha + salt )
 
     msg = HL.formataMensagem(['SENHA_SALGADA', senha_salgada])
     s.sendto( msg, ALICE )      
